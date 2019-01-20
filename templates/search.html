@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>MP3Drive - Free MP3 Downloads, Free MP4 Downloads, MP3/MP4 Converter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="mp3, free mp3 download, mp3 free download, mp4 download, free mp3, free mp4" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+<!-- Custom Theme files -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
+<!-- //web font -->
+<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />
+
+<style type="text/css">
+	.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: orangered;
+  margin: -3px 0 0 -3px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 50px;
+  left: 50px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 54px;
+  left: 45px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 57px;
+  left: 39px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 58px;
+  left: 32px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 57px;
+  left: 25px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 54px;
+  left: 19px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 50px;
+  left: 14px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 45px;
+  left: 10px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+</head>
+<body>
+	<!-- main -->
+	<div class="agileits-main"> 
+		<div class="agileinfo-row">
+			<div class="w3top-nav">	
+				<div class="w3top-nav-left">	
+					<h1 style="color:white;"><a href="index.html" style="color:#FFF;"><img src="/static/images/mp3logo.png" alt="MP3drive.co" style="float:left;"/>MP3drive.co</a></h1>
+				</div>	
+				<div class="w3top-nav-right">	
+					<ul>
+						<li><a href="index.html" class="active">Home</a></li>
+						<li><a href="convert.html">Converter</a></li>  
+						<li><a href="blog.html">Blog</a></li> 
+						<li><a href="contact.html">Contact</a></li>
+					</ul> 
+				</div>	
+		
+			</div>	
+			<div class="w3layouts-maintext">
+	<h2 style="color:#FFF; font-size:40px;">Free MP3/MP4 Downloader</h2>
+				
+				<div class="agile-search"> 
+					<form action="/search" method="GET">
+						<input value="{{ text }}" type="text" name="q" placeholder="Enter song name, artist or keyword..." id="search" required>
+						<input type="submit" value="Search">
+					</form> 
+                    <p class="w3lstext"><strong>MP3drive.co</strong> is a free web tool service that helps you download and play  audio and video files from various sources, such as Mp3, MP4, you can also convert audio/video from YouTube, Facebook, Soundcloud, Twitter, Vimeo, etc. to MP3, MP4 Formats.<br>
+                      *Unlimitedly Free Streaming, Conversion and Downloads. <br>
+*Widest range of online video/audio website supported.<br>
+*No registration required and no software installation.</p>
+<div id="results">
+	{% if query %}
+	<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	{% endif %}
+</div>
+
+				</div>
+			</div>	
+		</div>	
+	</div>	
+	<!-- //main -->
+	<div class="copyright w3-agile">
+		<br><p>Contact Copyright Claims  Privacy Policy ToS</p>
+	</div>
+	<!-- //copyright --> 
+<!--  icons are Taken from  http://www.flaticon.com/   -->
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+<script>
+	{% if query %}
+	var results = ""
+	var resultDom = document.querySelector("#results")
+	// <div id="result_1" class="result"><div class="name">WizKid - Fever (Official Video)</div><div class="properties">Source: YouTube • Time: / • Bitrate: 192 kbps</div><div class="options"><a id="1|haA7DpK9Z4k|none" href="" rel="nofollow" target="_self" class="download 1">Download</a><a href="" rel="nofollow" class="player 1">Play</a></div></div>
+	axios.get(`/app/search?q={{ query }}`)
+		.then(res => {
+			console.log(res)
+			if (res.status==200){
+				var data = res.data
+				for(var _data in data){
+					var _video = data[_data]
+					var result = `<div id="result-${_data}" class="result">
+													<div class="name">${_video["snippet"].title}</div>
+													<div class="properties">Source: YouTube • Time: / • Bitrate: 192 kbps</div>
+													<div class="options">
+														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp3" rel="nofollow" target="_self" class="btn btn-primary mr-2">Download MP3</a>													
+														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp4" rel="nofollow" target="_self" class="btn btn-primary mr-2">Download MP4</a>
+														<a href="/play?source=youtube&id=${_video["id"].videoId}" target="_blank" rel="nofollow" class="btn btn-primary">Play</a>
+													</div>
+												</div>`
+					results+=result
+				}
+				resultDom.innerHTML = results
+			}
+		})
+		.catch(err =>{
+			console.log(err)
+			results.innerHTML = "<h2>Error Occured</h2>"
+			results.className ="alert alert-danger"
+		});
+	{% endif %}
+
+</script>
+</body>
+</html>
