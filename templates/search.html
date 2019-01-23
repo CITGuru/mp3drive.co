@@ -109,20 +109,7 @@
 	<!-- main -->
 	<div class="agileits-main"> 
 		<div class="agileinfo-row">
-			<div class="w3top-nav">	
-				<div class="w3top-nav-left">	
-					<h1 style="color:white;"><a href="index.html" style="color:#FFF;"><img src="/static/images/mp3logo.png" alt="MP3drive.co" style="float:left;"/>MP3drive.co</a></h1>
-				</div>	
-				<div class="w3top-nav-right">	
-					<ul>
-						<li><a href="index.html" class="active">Home</a></li>
-						<li><a href="convert.html">Converter</a></li>  
-						<li><a href="blog.html">Blog</a></li> 
-						<li><a href="contact.html">Contact</a></li>
-					</ul> 
-				</div>	
-		
-			</div>	
+			{% include "./header.html" %}
 			<div class="w3layouts-maintext">
 	<h2 style="color:#FFF; font-size:40px;">Free MP3/MP4 Downloader</h2>
 				
@@ -131,15 +118,15 @@
 						<input value="{{ text }}" type="text" name="q" placeholder="Enter song name, artist or keyword..." id="search" required>
 						<input type="submit" value="Search">
 					</form> 
-                    <p class="w3lstext"><strong>MP3drive.co</strong> is a free web tool service that helps you download and play  audio and video files from various sources, such as Mp3, MP4, you can also convert audio/video from YouTube, Facebook, Soundcloud, Twitter, Vimeo, etc. to MP3, MP4 Formats.<br>
-                      *Unlimitedly Free Streaming, Conversion and Downloads. <br>
-*Widest range of online video/audio website supported.<br>
-*No registration required and no software installation.</p>
-<div id="results">
+                   
+<div id="results" class="mt-3 mb-3">
 	{% if query %}
 	<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	{% endif %}
-</div>
+</div> <p class="w3lstext"><strong>MP3drive.co</strong> is a free web tool service that helps you download and play  audio and video files from various sources, such as Mp3, MP4, you can also convert audio/video from YouTube, Facebook, Soundcloud, Twitter, Vimeo, etc. to MP3, MP4 Formats.<br>
+                      *Unlimitedly Free Streaming, Conversion and Downloads. <br>
+*Widest range of online video/audio website supported.<br>
+*No registration required and no software installation.</p>
 
 				</div>
 			</div>	
@@ -152,7 +139,7 @@
 	<!-- //copyright --> 
 <!--  icons are Taken from  http://www.flaticon.com/   -->
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+<script src="/static/js/axios.min.js"></script> 
 <script>
 	{% if query %}
 	var results = ""
@@ -169,9 +156,9 @@
 													<div class="name">${_video["snippet"].title}</div>
 													<div class="properties">Source: YouTube • Time: / • Bitrate: 192 kbps</div>
 													<div class="options">
-														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp3" rel="nofollow" target="_self" class="btn btn-primary mr-2">Download MP3</a>													
-														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp4" rel="nofollow" target="_self" class="btn btn-primary mr-2">Download MP4</a>
-														<a href="/play?source=youtube&id=${_video["id"].videoId}" target="_blank" rel="nofollow" class="btn btn-primary">Play</a>
+														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp3" rel="nofollow" target="_self" class="btn btn-primary mr-2 mt-2 mb-2">Download MP3</a>													
+														<a id="${_video["id"].videoId}" target="_blank" href="/download?source=youtube&id=${_video["id"].videoId}&format=mp4" rel="nofollow" target="_self" class="btn btn-primary mr-2 mt-2 mb-2">Download MP4</a>
+														<a href="/play?source=youtube&id=${_video["id"].videoId}" target="_blank" rel="nofollow" class="btn btn-primary mt-2 mb-2">Play</a>
 													</div>
 												</div>`
 					results+=result
@@ -181,8 +168,8 @@
 		})
 		.catch(err =>{
 			console.log(err)
-			results.innerHTML = "<h2>Error Occured</h2>"
-			results.className ="alert alert-danger"
+			results = "<h2 class='alert alert-danger'>Error Occured, Try Again.</h2>"
+			resultDom.innerHTML = results
 		});
 	{% endif %}
 

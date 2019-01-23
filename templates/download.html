@@ -39,20 +39,7 @@
 	<!-- main -->
 	<div class="agileits-main"> 
 		<div class="agileinfo-row">
-			<div class="w3top-nav">	
-				<div class="w3top-nav-left">	
-					<h1 style="color:white;"><a href="index.html" style="color:#FFF;"><img src="/static/images/mp3logo.png" alt="MP3drive.co" style="float:left;"/>MP3drive.co</a></h1>
-				</div>	
-				<div class="w3top-nav-right">	
-					<ul>
-						<li><a href="index.html" class="active">Home</a></li>
-						<li><a href="convert.html">Converter</a></li>  
-						<li><a href="blog.html">Blog</a></li> 
-						<li><a href="contact.html">Contact</a></li>
-					</ul> 
-				</div>	
-		
-			</div>	
+			{% include "./header.html" %}	
 			<div class="w3layouts-maintext">
 	<h2 style="color: #0F0; font-size:40px;">
 			{% if format == "mp3" %}
@@ -83,7 +70,7 @@
                       *Unlimitedly Free Streaming, Conversion and Downloads. <br>
 *Widest range of online video/audio website supported.<br>
 *No registration required and no software installation.</p>
-<a href="/search" style="background-color:white;">Back to search</a>
+<a href="/search" class="btn btn-info btn-lg"><< Back to search</a>
 				</div>
 			</div>	
 		</div>	

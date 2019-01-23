@@ -107,6 +107,8 @@ sudo nginx -t
 sudo service nginx reload
 sudo systemctl restart nginx
 sudo systemctl restart $PROJECT_NAME
+sudo ufw delete allow 8000
+sudo ufw allow 'Nginx Full'
 #sudo chown -R :www-data $STATIC_DIR
 chmod -R 777 /root/app/static/
 # Chnge nginx user to root
