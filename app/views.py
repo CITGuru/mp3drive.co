@@ -7,6 +7,9 @@ from django.contrib import messages
 def home(request):
     return render(request, "index.html")
 
+def converter(request):
+    return render(request, "converter.html")
+
 def download(request):
     video_id = request.GET["id"]
     video_format = request.GET["format"]
@@ -39,6 +42,18 @@ def play(request):
     return render(request, "play.html", context)
 
 def search(request):
+    query = request.GET.get("q", None)
+    if query is None:
+        query = ""
+    text = " ".join(query.split("+"))
+    context = {
+        "query": query,
+        "text": text,
+        "download_key": "MjcxMTg1NjMz"
+    }
+    return render(request, "search.html", context)
+
+def convert(request):
     query = request.GET.get("q", None)
     if query is None:
         query = ""

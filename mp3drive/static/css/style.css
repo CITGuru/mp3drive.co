@@ -329,7 +329,8 @@ div.result {
     padding: 15px;
 }
 
-.agile-search h1 {
+h1.overview {
     font-size: 25px;
     font-weight: bold;
+    color: white;
 }

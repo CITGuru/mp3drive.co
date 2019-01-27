@@ -19,7 +19,9 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
+    path('converter', views.converter),
     path('search', views.search),
+    path('convert', views.convert),
     path('download', views.download),
     path('play', views.play),
     path('app/search', views.search_youtube)
