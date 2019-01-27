@@ -95,7 +95,7 @@ p.w3lstext {
     width: 65%;
     margin: 1.5em auto;
 }
-.agile-search input[type="text"] {
+.agile-search input[type="text"], .agile-search input[type="url"]{
     width: 50%;
     padding: .8em;
     font-size: 1em;
