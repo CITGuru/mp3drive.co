@@ -10,6 +10,7 @@
 set -e
 
 export SERVER_NAME='mp3drive.co'
+export WWW_NAME="www.${SERVER_NAME}"
 export GIT_REPO='git@github.com:CITGuru/mp3drive.co.git'
 export MAIN_DIR='/root/app'
 export STATIC_DIR=$MAIN_DIR/static/
@@ -59,7 +60,7 @@ ExecStartPre=$VENV_BIN/python $MAIN_DIR/manage.py migrate
 #ExecStartPre=cd /root/app/frontend_root && npm install
 #ExecStartPre=$VENV_BIN/python $MAIN_DIR/manage.py npminstall
 ExecStartPre=$VENV_BIN/python $MAIN_DIR/manage.py collectstatic --noinput
-ExecStart=$VENV_BIN/gunicorn --access-logfile $HOME/${PROJECT_NAME}_access.log --error-logfile $HOME/${PROJECT_NAME}_error.log --workers 3 --bind 0.0.0.0:8712 mp3drive.wsgi:application
+ExecStart=$VENV_BIN/gunicorn --access-logfile $HOME/${PROJECT_NAME}_access.log --error-logfile $HOME/${PROJECT_NAME}_error.log --workers 3 --bind 127.0.0.1:8712 mp3drive.wsgi:application
 [Install]
 WantedBy=multi-user.target
 EOL
@@ -78,8 +79,8 @@ sudo systemctl --no-pager status ${PROJECT_NAME}
 
 cat > $HOME/nginxconf <<EOL
 server {
-    listen 81;
-    server_name ${SERVER_NAME};
+    listen 80;
+    server_name ${SERVER_NAME} ${WWW_NAME};
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
@@ -107,10 +108,9 @@ sudo nginx -t
 sudo service nginx reload
 sudo systemctl restart nginx
 sudo systemctl restart $PROJECT_NAME
-sudo ufw delete allow 8000
-sudo ufw allow 'Nginx Full'
 #sudo chown -R :www-data $STATIC_DIR
 chmod -R 777 /root/app/static/
 # Chnge nginx user to root
 sed -ie 's/^user\ www-data.*/user root;/' /etc/nginx/nginx.conf
 exit 0
+
